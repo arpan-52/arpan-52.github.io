@@ -11,10 +11,15 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
             line-height: 1.6;
             transition: background 0.5s, color 0.5s;
+            overflow-x: hidden;
         }
 
         body.day-theme {
@@ -23,16 +28,12 @@
         }
 
         body.day-theme header {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid #e0e0e0;
         }
 
         body.day-theme a {
             color: #0066cc;
-        }
-
-        body.day-theme a:hover {
-            color: #0052a3;
         }
 
         body.night-theme {
@@ -41,16 +42,12 @@
         }
 
         body.night-theme header {
-            background: #1a1a1a;
+            background: rgba(26, 26, 26, 0.95);
             border-bottom: 1px solid #333;
         }
 
         body.night-theme a {
             color: #64b5f6;
-        }
-
-        body.night-theme a:hover {
-            color: #90caf9;
         }
 
         header {
@@ -60,6 +57,7 @@
             width: 100%;
             z-index: 1000;
             transition: background 0.5s;
+            backdrop-filter: blur(10px);
         }
 
         nav {
@@ -68,17 +66,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo {
             font-size: 16px;
             font-weight: 700;
-            letter-spacing: -0.3px;
         }
 
         .nav-links {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             list-style: none;
             flex-wrap: wrap;
         }
@@ -86,26 +85,26 @@
         .nav-links a {
             text-decoration: none;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.3px;
-            transition: color 0.3s;
+            transition: opacity 0.3s;
             cursor: pointer;
         }
 
-        .nav-links a.active {
-            border-bottom: 2px solid currentColor;
-            padding-bottom: 4px;
+        .nav-links a:hover {
+            opacity: 0.6;
         }
 
         .main-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 100px 60px 60px;
+            width: 100%;
+            padding-top: 80px;
         }
 
         .section {
             display: none;
+            min-height: 100vh;
+            padding: 80px 60px;
         }
 
         .section.active {
@@ -113,19 +112,171 @@
         }
 
         .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.7)), url('./images/back.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero .position {
+            font-size: 20px;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .hero .institution {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-btn.primary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .hero-btn.primary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .hero-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        .item {
+            margin-bottom: 50px;
+            padding-left: 30px;
+            border-left: 4px solid;
+            position: relative;
+        }
+
+        body.day-theme .item {
+            border-left-color: #0066cc;
+        }
+
+        body.night-theme .item {
+            border-left-color: #64b5f6;
+        }
+
+        .item h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .item .subtitle {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .item p {
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.85;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .about-column h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            margin-top: 32px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .about-column h3:first-child {
+            margin-top: 0;
+        }
+
+        .about-column p {
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 12px;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 280px 1fr;
             gap: 60px;
             align-items: start;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .profile-image {
-            width: 250px;
-            height: 250px;
+            width: 280px;
+            height: 280px;
             border-radius: 8px;
             overflow: hidden;
-            flex-shrink: 0;
         }
 
         .profile-image img {
@@ -134,179 +285,21 @@
             object-fit: cover;
         }
 
-        .hero-content h1 {
-            font-size: 42px;
+        .profile-text h3 {
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 8px;
-            line-height: 1.1;
-        }
-
-        .title {
-            font-size: 18px;
-            margin-bottom: 16px;
-            opacity: 0.8;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-bottom: 24px;
-        }
-
-        .bio {
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 24px;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: #1a1a1a;
-            color: #fff;
-        }
-
-        body.night-theme .btn-primary {
-            background: #e0e0e0;
-            color: #1a1a1a;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.8;
-        }
-
-        section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .about-block h3 {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
-            margin-top: 32px;
-            opacity: 0.7;
-        }
-
-        .about-block h3:first-child {
+            margin-bottom: 20px;
             margin-top: 0;
-        }
-
-        .about-block p {
-            font-size: 14px;
-            line-height: 1.8;
-            opacity: 0.85;
-            margin-bottom: 12px;
-        }
-
-        .research-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        .research-item {
-            padding: 24px;
-            border-left: 3px solid;
-            border-left-color: #0066cc;
-        }
-
-        body.night-theme .research-item {
-            border-left-color: #64b5f6;
-        }
-
-        .research-item h3 {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .research-item p {
-            font-size: 13px;
-            line-height: 1.7;
-            opacity: 0.85;
-            margin-bottom: 8px;
-        }
-
-        .research-year {
-            font-size: 12px;
-            opacity: 0.6;
-            font-weight: 600;
-        }
-
-        .publication-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .pub-item {
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.02);
-            border-radius: 6px;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        body.night-theme .pub-item {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .pub-title {
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .pub-details {
-            opacity: 0.8;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .contact-block h4 {
-            font-size: 12px;
-            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 8px;
             opacity: 0.7;
         }
 
-        .contact-block p {
-            font-size: 14px;
+        .profile-text p {
+            font-size: 15px;
+            line-height: 1.8;
             opacity: 0.85;
-        }
-
-        .contact-block a {
-            text-decoration: none;
-            border-bottom: 1px solid currentColor;
+            margin-bottom: 16px;
         }
 
         footer {
@@ -322,27 +315,15 @@
             border-color: rgba(255, 255, 255, 0.1);
         }
 
-        .time-indicator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 12px;
-            padding: 8px 12px;
-            border-radius: 4px;
-            opacity: 0.6;
-        }
-
-        body.day-theme .time-indicator {
-            background: #e3f2fd;
-            color: #1a1a1a;
-        }
-
-        body.night-theme .time-indicator {
-            background: #263238;
-            color: #e0e0e0;
-        }
-
         @media (max-width: 768px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
             .nav-links {
                 gap: 12px;
             }
@@ -351,32 +332,30 @@
                 font-size: 11px;
             }
 
-            .hero {
-                grid-template-columns: 1fr;
+            .section {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 32px;
             }
 
             .about-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
 
-            .contact-grid {
+            .profile-section {
                 grid-template-columns: 1fr;
             }
 
-            .main-content {
-                padding: 100px 30px 60px;
-            }
-
-            .hero-content h1 {
-                font-size: 32px;
-            }
-
-            section h2 {
-                font-size: 24px;
-            }
-
-            header {
-                padding: 16px 30px;
+            .profile-image {
+                width: 100%;
+                height: auto;
             }
         }
     </style>
@@ -386,154 +365,108 @@
         <nav>
             <div class="logo">Arpan Pal</div>
             <ul class="nav-links">
-                <li><a onclick="showTab('home')" class="active">Home</a></li>
-                <li><a onclick="showTab('about')">About</a></li>
+                <li><a onclick="showTab('home')">Home</a></li>
+                <li><a onclick="showTab('about')">About Me</a></li>
                 <li><a onclick="showTab('research')">Research</a></li>
                 <li><a onclick="showTab('teaching')">Teaching</a></li>
+                <li><a onclick="showTab('mentoring')">Mentoring</a></li>
                 <li><a onclick="showTab('talks')">Talks</a></li>
-                <li><a onclick="showTab('cv')">CV</a></li>
+                <li><a onclick="showTab('cv')">Curriculum Vitae</a></li>
                 <li><a onclick="showTab('outreach')">Outreach</a></li>
-                <li><a onclick="showTab('radio')">Radio Club</a></li>
-                <li><a onclick="showTab('outside')">Outside Academia</a></li>
+                <li><a onclick="showTab('recent')">Recent News</a></li>
+                <li><a onclick="showTab('outside')">Outside of Academia</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main-content">
         <!-- HOME -->
-        <section id="home" class="section active">
-            <div class="hero">
-                <div class="profile-image">
-                    <img src="./images/Arpan.jpg" alt="Arpan Pal">
-                </div>
-                <div class="hero-content">
-                    <h1>Arpan Pal</h1>
-                    <p class="title">Radio Astronomer</p>
-                    <p class="subtitle">Fulbright-Nehru Doctoral Fellow at NRAO, Socorro</p>
-                    <p class="bio">I study cosmic magnetism and astrophysical shocks in merging galaxy clusters using radio observations. My research combines radio polarimetry, interferometry, and data analysis to understand the fundamental physics of the Universe.</p>
-                    <div class="cta-buttons">
-                        <button class="btn-primary" onclick="showTab('cv')">View CV</button>
-                        <button class="btn-secondary" onclick="showTab('about')">Learn More</button>
-                    </div>
-                </div>
+        <section id="home" class="section active hero">
+            <h1>Arpan Pal</h1>
+            <p class="position">Radio Astronomer</p>
+            <p class="institution">Fulbright-Nehru Doctoral Fellow<br>National Radio Astronomy Observatory (NRAO), Socorro, New Mexico</p>
+            <div class="hero-buttons">
+                <button class="hero-btn primary" onclick="showTab('cv')">CV</button>
+                <button class="hero-btn primary" onclick="showTab('research')">Research</button>
+                <button class="hero-btn primary" onclick="showTab('radio')">Radio Club</button>
             </div>
         </section>
 
-        <!-- ABOUT -->
+        <!-- ABOUT ME -->
         <section id="about" class="section">
-            <h2>About Me</h2>
-            <div class="about-grid">
-                <div class="about-block">
-                    <h3>Current Position</h3>
-                    <p>Fulbright-Nehru Doctoral Fellow at National Radio Astronomy Observatory (NRAO), Socorro, New Mexico (Nov 2025 - Apr 2026)</p>
-                    
-                    <h3>Education</h3>
-                    <p><strong>Integrated PhD</strong>, Physics<br>National Centre for Radio Astrophysics, Pune<br>Supervisor: Dr. Ruta Kale<br>CGPA: 8.00/10</p>
-                    <p><strong>Bachelor of Science</strong>, Physics Honours<br>Burdwan Raj College, India (2017-2020)<br>CGPA: 9.44/10 (University Topper)</p>
-                </div>
-                <div class="about-block">
-                    <h3>Research Focus</h3>
-                    <p>• Cosmic magnetism and magnetic field evolution<br>
-                    • Astrophysical shocks and turbulence<br>
-                    • Galaxy cluster mergers<br>
-                    • Radio polarimetric calibration<br>
-                    • Fast and slow transients<br>
-                    • Radio imaging and instrumentation</p>
-                    
-                    <h3>Contact</h3>
-                    <p>Email: <a href="mailto:apal@ncra.tifr.res.in">apal@ncra.tifr.res.in</a><br>
-                    Phone: +91-8972279457<br>
-                    Institution: National Centre for Radio Astrophysics, Pune</p>
+            <div class="content-section">
+                <h2>About Me</h2>
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="./images/Arpan.jpg" alt="Arpan Pal">
+                    </div>
+                    <div class="profile-text">
+                        <h3>Background</h3>
+                        <p>I am Arpan Pal, a radio astronomer currently working as a Fulbright-Nehru Doctoral Fellow at the National Radio Astronomy Observatory in Socorro, New Mexico. I study cosmic magnetism and astrophysical shocks in merging galaxy clusters using advanced radio observations and interferometry.</p>
+                        
+                        <h3>Education</h3>
+                        <p><strong>Integrated PhD</strong> in Physics, National Centre for Radio Astrophysics, Pune (2020-Present)<br>Supervisor: Dr. Ruta Kale</p>
+                        <p><strong>Bachelor of Science</strong> in Physics Honours, Burdwan Raj College (2017-2020)<br>University Topper with CGPA 9.44/10</p>
+
+                        <h3>Research Interests</h3>
+                        <p>Cosmic magnetism, Radio polarimetry, Galaxy cluster mergers, Astrophysical shocks, Radio interferometry, Fast radio bursts, Radio imaging</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- RESEARCH -->
         <section id="research" class="section">
-            <h2>Research</h2>
-            <div class="research-grid">
-                <div class="research-item">
-                    <h3>Radio Relics and Polarization in Galaxy Cluster Mergers</h3>
-                    <p>Investigating linearly polarized radio relics down to 550 MHz using uGMRT and MeerKAT. Understanding magnetic field amplification in merger-driven shocks.</p>
-                    <p class="research-year">2024-2025</p>
+            <div class="content-section">
+                <h2>Research</h2>
+                <div class="item">
+                    <h3>Radio Relics and Polarization in Merging Clusters</h3>
+                    <p>Investigating linearly polarized radio relics down to 550 MHz using uGMRT and MeerKAT. Understanding the origin and evolution of magnetic fields in merger-driven shocks.</p>
                 </div>
-                <div class="research-item">
-                    <h3>Fast Radio Burst Periodicity Studies</h3>
-                    <p>Analyzing activity periodicity in FRB 20240209A and polarization properties. Collaboration with international research teams.</p>
-                    <p class="research-year">2024-2025</p>
+                <div class="item">
+                    <h3>Fast Radio Burst Periodicity</h3>
+                    <p>Analyzing four-month periodicity in FRB 20240209A activity and polarization properties. Collaboration on pulsar-like polarization position angle swings in nearby FRBs published in Nature.</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>Radio Interferometric Data Processing</h3>
-                    <p>Developing custom pipelines: CHARIZARD (full polarimetric imaging), catboss (RFI flagging), and Foresight (sky model estimation).</p>
-                    <p class="research-year">2021-Present</p>
+                    <p>Developing custom pipelines including CHARIZARD (high-throughput full polarimetric imaging), catboss (RFI flagging suite), and Foresight (sky model estimation). Experience with CASA, Python, C++, and HPC workflows.</p>
                 </div>
-                <div class="research-item">
-                    <h3>Observational Expertise</h3>
-                    <p>PI on 250 hours of uGMRT time, 93.5 hours of VLA time, and 64 ks of XMM-Newton observations. Co-PI on additional observing proposals.</p>
-                    <p class="research-year">2020-Present</p>
+                <div class="item">
+                    <h3>Observational Facilities</h3>
+                    <p>Principal Investigator on 250 hours of uGMRT observations, 93.5 hours on the Jansky VLA, and 64 ks of XMM-Newton time. Co-investigator on additional observing proposals.</p>
                 </div>
             </div>
         </section>
 
-        <!-- PUBLICATIONS -->
-        <section id="cv" class="section">
-            <h2>Publications & CV</h2>
-            <h3 style="font-size: 16px; font-weight: 700; margin: 32px 0 20px 0;">Refereed Publications</h3>
-            <div class="publication-list">
-                <div class="pub-item">
-                    <div class="pub-title">A Linearly Polarized Merger Shock Down to 550 MHz: A uGMRT Study of the Merging Cluster Abell 746</div>
-                    <div class="pub-details">Arpan Pal, Ruta Kale, and Reinout J. van Weeren<br>The Astrophysical Journal, Vol. 991, No. 102 (2025)</div>
-                </div>
-                <div class="pub-item">
-                    <div class="pub-title">A Possible Four-Month Periodicity in the Activity of FRB 20240209A</div>
-                    <div class="pub-details">Arpan Pal<br>The Astrophysical Journal Letters, Vol. 983, No. L15 (2025)</div>
-                </div>
-                <div class="pub-item">
-                    <div class="pub-title">A uGMRT and MeerKAT Study of Radio Relics in the Low-mass Merging Cluster PSZ2 G200.95-28.16</div>
-                    <div class="pub-details">Arpan Pal, Ruta Kale, Qian H. S. Wang, and Daniel R. Wik<br>The Astrophysical Journal, Vol. 979, No. 4 (2025)</div>
-                </div>
-                <div class="pub-item">
-                    <div class="pub-title">A pulsar-like swing in the polarisation position angle of a nearby fast radio burst</div>
-                    <div class="pub-details">Ryan McKinven, Mohit Bhardwaj, Tarraneh Eftekhari, Charles D. Kilpatrick, Aida Kirichenko, Arpan Pal, and 38 co-authors<br>Nature 637, 43–47 (2025)</div>
-                </div>
-            </div>
-
-            <h3 style="font-size: 16px; font-weight: 700; margin: 32px 0 20px 0;">Awards & Fellowships</h3>
-            <div class="publication-list">
-                <div class="pub-item">URSI AP-SARC Young Scientist Award (2025) – 2200 USD</div>
-                <div class="pub-item">Fullbright-Nehru Doctoral Research Fellowship (2024) – 23863 USD</div>
-                <div class="pub-item">CSIR-UGC National Eligibility Test, Junior Research Fellowship (2022) – National Rank 80</div>
-                <div class="pub-item">GATE 2021 – National Rank 853</div>
-                <div class="pub-item">National Topper, National Graduate Physics Examination (2020)</div>
-                <div class="pub-item">TIFR PhD Fellowship (2020) – 28514 USD + 6000 USD Research Grant</div>
-            </div>
-
-            <h3 style="font-size: 16px; font-weight: 700; margin: 32px 0 20px 0;">Full CV</h3>
-            <p style="font-size: 14px; opacity: 0.85;">Download my complete CV: <a href="#" download>Arpan_Pal_CV.pdf</a></p>
-        </section>
-
-        <!-- TEACHING & MENTORING -->
+        <!-- TEACHING -->
         <section id="teaching" class="section">
-            <h2>Teaching & Mentoring</h2>
-            <div class="research-grid">
-                <div class="research-item">
+            <div class="content-section">
+                <h2>Teaching</h2>
+                <div class="item">
                     <h3>Tutor at FTSky Conference</h3>
-                    <p>ICTS, India (October 2025)</p>
+                    <p>ICTS, Bangalore, India (October 2025)</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>Tutor at Radio Astronomy School</h3>
-                    <p>NCRA, India (November 2024)</p>
+                    <p>National Centre for Radio Astrophysics, Pune (November 2024)</p>
                 </div>
-                <div class="research-item">
-                    <h3>Co-guided Samruddhi Bhate</h3>
-                    <p>Master's Thesis at DIAT, Pune (September 2025 - present)</p>
+            </div>
+        </section>
+
+        <!-- MENTORING -->
+        <section id="mentoring" class="section">
+            <div class="content-section">
+                <h2>Mentoring</h2>
+                <div class="item">
+                    <h3>Samruddhi Bhate</h3>
+                    <p>Co-guiding Master's Thesis at DIAT, Pune (September 2025 - Present)</p>
                 </div>
-                <div class="research-item">
-                    <h3>Co-guided Abhijeet Paul</h3>
+                <div class="item">
+                    <h3>Abhijeet Paul</h3>
                     <p>Research project at NCRA (July - September 2025)</p>
                 </div>
-                <div class="research-item">
-                    <h3>Co-guided Ansha Ans</h3>
+                <div class="item">
+                    <h3>Ansha Ans</h3>
                     <p>Visiting Student Research Program at NCRA (May - July 2025)</p>
                 </div>
             </div>
@@ -541,76 +474,133 @@
 
         <!-- TALKS -->
         <section id="talks" class="section">
-            <h2>Talks & Presentations</h2>
-            <div class="research-grid">
-                <div class="research-item">
+            <div class="content-section">
+                <h2>Talks & Presentations</h2>
+                <div class="item">
                     <h3>CSIRO Colloquium</h3>
-                    <p>CSIRO Perth, Australia (August 2025)</p>
+                    <p class="subtitle">Perth, Australia (August 2025)</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>URSI-APRASC Young Scientist Award Talk</h3>
-                    <p>ICC Sydney, Australia (August 2025)</p>
+                    <p class="subtitle">Sydney, Australia (August 2025)</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>Radio Cosmology and Continuum Observations in the SKA Era</h3>
-                    <p>Contributed talk at ICTS, India (April 2025)</p>
+                    <p class="subtitle">ICTS, India (April 2025) - Contributed talk</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>University of Utah Astro Group Talk</h3>
-                    <p>University of Utah, USA (September 2024)</p>
+                    <p class="subtitle">Salt Lake City, USA (September 2024)</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>Galaxy Clusters and Radio Relics II Meeting</h3>
-                    <p>Harvard & Smithsonian, USA (September 2024)</p>
+                    <p class="subtitle">Harvard & Smithsonian, USA (September 2024)</p>
                 </div>
-                <div class="research-item">
-                    <h3>URSI RCRS Contributed Talk</h3>
-                    <p>GEHU, India (November 2024)</p>
+            </div>
+        </section>
+
+        <!-- CURRICULUM VITAE -->
+        <section id="cv" class="section">
+            <div class="content-section">
+                <h2>Curriculum Vitae</h2>
+                
+                <h3 style="font-size: 18px; font-weight: 700; margin: 40px 0 20px 0;">Publications</h3>
+                <div class="item">
+                    <h3>A Linearly Polarized Merger Shock Down to 550 MHz: A uGMRT Study of the Merging Cluster Abell 746</h3>
+                    <p class="subtitle">Arpan Pal, Ruta Kale, Reinout J. van Weeren - The Astrophysical Journal, Vol. 991, No. 102 (2025)</p>
+                </div>
+                <div class="item">
+                    <h3>A Possible Four-Month Periodicity in the Activity of FRB 20240209A</h3>
+                    <p class="subtitle">Arpan Pal - The Astrophysical Journal Letters, Vol. 983, No. L15 (2025)</p>
+                </div>
+                <div class="item">
+                    <h3>A uGMRT and MeerKAT Study of Radio Relics in the Low-mass Merging Cluster PSZ2 G200.95-28.16</h3>
+                    <p class="subtitle">Arpan Pal, Ruta Kale, Qian H. S. Wang, Daniel R. Wik - The Astrophysical Journal, Vol. 979, No. 4 (2025)</p>
+                </div>
+                <div class="item">
+                    <h3>A pulsar-like swing in the polarisation position angle of a nearby fast radio burst</h3>
+                    <p class="subtitle">Ryan McKinven, Mohit Bhardwaj, Tarraneh Eftekhari, Charles D. Kilpatrick, Aida Kirichenko, Arpan Pal, and 38 co-authors - Nature 637, 43–47 (2025)</p>
+                </div>
+
+                <h3 style="font-size: 18px; font-weight: 700; margin: 40px 0 20px 0;">Awards & Fellowships</h3>
+                <div class="item">
+                    <h3>URSI AP-SARC Young Scientist Award</h3>
+                    <p class="subtitle">2025 - USD 2,200</p>
+                </div>
+                <div class="item">
+                    <h3>Fullbright-Nehru Doctoral Research Fellowship</h3>
+                    <p class="subtitle">2024 - USD 23,863</p>
+                </div>
+                <div class="item">
+                    <h3>CSIR-UGC National Eligibility Test</h3>
+                    <p class="subtitle">2022 - Junior Research Fellowship, National Rank 80</p>
+                </div>
+                <div class="item">
+                    <h3>TIFR PhD Fellowship</h3>
+                    <p class="subtitle">2020 - USD 28,514 + USD 6,000 Research Grant</p>
                 </div>
             </div>
         </section>
 
         <!-- OUTREACH -->
         <section id="outreach" class="section">
-            <h2>Outreach & Community Service</h2>
-            <div class="research-grid">
-                <div class="research-item">
+            <div class="content-section">
+                <h2>Outreach & Community Service</h2>
+                <div class="item">
                     <h3>Public Talk at Pint of Science</h3>
-                    <p>Pune, India (May 2025) – Engaging the public about radio astronomy</p>
+                    <p>Pune, India (May 2025) - Engaging the public about radio astronomy</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>Public Talk at NCRA</h3>
                     <p>For local school students (May 2024)</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>National Science Day Evaluator & Volunteer</h3>
                     <p>uGMRT (February 2023, 2024, 2025)</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>Referee for Scientific Journals</h3>
                     <p>Nature Astronomy, Astrophysical Journal</p>
                 </div>
-                <div class="research-item">
+                <div class="item">
                     <h3>Proposal Reviewer</h3>
                     <p>Chandra and Giant Meterwave Radio Telescope observing proposals</p>
                 </div>
-                <div class="research-item">
-                    <h3>Conference Organizer</h3>
-                    <p>Radio Astronomy School 2024 at NCRA Pune<br>FTSky Conference at ICTS Bangalore</p>
+                <div class="item">
+                    <h3>Conference Organization</h3>
+                    <p>Radio Astronomy School 2024 at NCRA Pune, FTSky Conference at ICTS Bangalore</p>
                 </div>
             </div>
         </section>
 
-        <!-- RADIO IMAGING CLUB -->
-        <section id="radio" class="section">
-            <h2>Radio Imaging Club</h2>
-            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 24px; opacity: 0.9;">Coming soon. I'm organizing a collaborative space for radio astronomers to discuss imaging techniques, share code, and work on common challenges in radio interferometry.</p>
+        <!-- RECENT NEWS -->
+        <section id="recent" class="section">
+            <div class="content-section">
+                <h2>Recent News</h2>
+                <div class="item">
+                    <h3>Fulbright-Nehru Fellowship Award</h3>
+                    <p class="subtitle">2024</p>
+                    <p>Selected for Fulbright-Nehru Doctoral Research Fellowship to conduct research at NRAO Socorro.</p>
+                </div>
+                <div class="item">
+                    <h3>URSI Young Scientist Award</h3>
+                    <p class="subtitle">2025</p>
+                    <p>Received URSI AP-SARC Young Scientist Award for contributions to radio astronomy research.</p>
+                </div>
+                <div class="item">
+                    <h3>Nature Publication</h3>
+                    <p class="subtitle">2025</p>
+                    <p>Co-authored Nature paper on pulsar-like polarization properties of nearby fast radio bursts.</p>
+                </div>
+            </div>
         </section>
 
-        <!-- OUTSIDE ACADEMIA -->
+        <!-- OUTSIDE OF ACADEMIA -->
         <section id="outside" class="section">
-            <h2>Outside of Academia</h2>
-            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 24px; opacity: 0.9;">When I'm not observing the cosmos, I enjoy exploring the cultural heritage of different regions, hiking, reading science fiction, and learning about astrophotography. I'm passionate about science communication and making astronomy accessible to everyone.</p>
+            <div class="content-section">
+                <h2>Outside of Academia</h2>
+                <p style="font-size: 16px; line-height: 1.9; opacity: 0.9; margin-bottom: 30px;">When I'm not observing the cosmos, I enjoy exploring the cultural heritage of different regions, hiking through nature, and reading science fiction. I'm passionate about astrophotography and enjoy capturing images of the night sky. Science communication is important to me, and I believe in making astronomy accessible to everyone, regardless of their background.</p>
+            </div>
         </section>
     </div>
 
@@ -618,39 +608,24 @@
         <p>&copy; 2025 Arpan Pal. All rights reserved.</p>
     </footer>
 
-    <div class="time-indicator" id="timeIndicator"></div>
-
     <script>
         function showTab(tabName) {
-            // Hide all sections
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => section.classList.remove('active'));
-            
-            // Show selected section
             document.getElementById(tabName).classList.add('active');
-            
-            // Update active nav link
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => link.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Scroll to top
             window.scrollTo(0, 0);
         }
 
         function setThemeByTime() {
             const hour = new Date().getHours();
             const body = document.body;
-            const timeIndicator = document.getElementById('timeIndicator');
             
             if (hour >= 6 && hour < 18) {
                 body.classList.remove('night-theme');
                 body.classList.add('day-theme');
-                timeIndicator.textContent = '☀️ Day Mode';
             } else {
                 body.classList.remove('day-theme');
                 body.classList.add('night-theme');
-                timeIndicator.textContent = '🌙 Night Mode';
             }
         }
 
