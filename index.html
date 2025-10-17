@@ -85,7 +85,7 @@
         .nav-links a {
             text-decoration: none;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.3px;
             transition: opacity 0.3s;
@@ -98,13 +98,10 @@
 
         .main-content {
             width: 100%;
-            padding-top: 80px;
         }
 
         .section {
             display: none;
-            min-height: 100vh;
-            padding: 80px 60px;
         }
 
         .section.active {
@@ -112,20 +109,19 @@
         }
 
         .hero {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            background-image: linear-gradient(135deg, rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.7)), url('./images/back.jpg');
+            padding: 80px 60px;
+            background-image: linear-gradient(135deg, rgba(10, 14, 39, 0.6), rgba(10, 14, 39, 0.6)), url('./images/back.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 60px;
         }
 
         .hero h1 {
@@ -145,7 +141,15 @@
             font-size: 16px;
             opacity: 0.8;
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 700px;
+        }
+
+        .hero-bio {
+            max-width: 800px;
+            font-size: 16px;
+            line-height: 1.9;
+            opacity: 0.9;
+            margin-bottom: 40px;
         }
 
         .hero-buttons {
@@ -157,7 +161,9 @@
 
         .hero-btn {
             padding: 12px 24px;
-            border: none;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
             border-radius: 4px;
             font-size: 13px;
             font-weight: 600;
@@ -167,29 +173,14 @@
             letter-spacing: 0.5px;
         }
 
-        .hero-btn.primary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .hero-btn.primary:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .hero-btn.secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .hero-btn.secondary:hover {
+        .hero-btn:hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
         .content-section {
             max-width: 1000px;
             margin: 0 auto;
+            padding: 80px 60px;
         }
 
         h2 {
@@ -234,6 +225,7 @@
         .about-content {
             max-width: 1000px;
             margin: 0 auto;
+            padding: 80px 60px;
         }
 
         .about-grid {
@@ -332,7 +324,15 @@
                 font-size: 11px;
             }
 
-            .section {
+            .content-section {
+                padding: 60px 20px;
+            }
+
+            .about-content {
+                padding: 60px 20px;
+            }
+
+            .hero {
                 padding: 60px 20px;
             }
 
@@ -373,7 +373,7 @@
                 <li><a onclick="showTab('talks')">Talks</a></li>
                 <li><a onclick="showTab('cv')">Curriculum Vitae</a></li>
                 <li><a onclick="showTab('outreach')">Outreach</a></li>
-                <li><a onclick="showTab('recent')">Recent News</a></li>
+                <li><a onclick="showTab('radio-rants')">Radio Imaging Rants</a></li>
                 <li><a onclick="showTab('outside')">Outside of Academia</a></li>
             </ul>
         </nav>
@@ -381,20 +381,42 @@
 
     <div class="main-content">
         <!-- HOME -->
-        <section id="home" class="section active hero">
-            <h1>Arpan Pal</h1>
-            <p class="position">Radio Astronomer</p>
-            <p class="institution">Fulbright-Nehru Doctoral Fellow<br>National Radio Astronomy Observatory (NRAO), Socorro, New Mexico</p>
-            <div class="hero-buttons">
-                <button class="hero-btn primary" onclick="showTab('cv')">CV</button>
-                <button class="hero-btn primary" onclick="showTab('research')">Research</button>
-                <button class="hero-btn primary" onclick="showTab('radio')">Radio Club</button>
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Arpan Pal</h1>
+                <p class="position">Radio Astronomer</p>
+                <p class="institution">Fulbright-Nehru Doctoral Fellow<br>National Radio Astronomy Observatory (NRAO), Socorro, New Mexico</p>
+                
+                <div class="hero-buttons">
+                    <button class="hero-btn" onclick="showTab('cv')">CV</button>
+                    <button class="hero-btn" onclick="showTab('research')">Research</button>
+                    <button class="hero-btn" onclick="showTab('radio-rants')">Radio Imaging Rants</button>
+                </div>
+            </div>
+
+            <div class="content-section" style="margin-top: 60px;">
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="./images/Arpan.jpg" alt="Arpan Pal">
+                    </div>
+                    <div class="profile-text">
+                        <h3>About Me</h3>
+                        <p>I am Arpan Pal, a radio astronomer currently working as a Fulbright-Nehru Doctoral Fellow at the National Radio Astronomy Observatory in Socorro, New Mexico. I study cosmic magnetism and astrophysical shocks in merging galaxy clusters using advanced radio observations and interferometry.</p>
+                        
+                        <h3>Current Work</h3>
+                        <p>My research combines radio polarimetry, interferometric imaging, and computational data analysis. I focus on understanding magnetic field evolution in merger-driven shocks and analyzing fast radio burst properties using cutting-edge radio facilities.</p>
+
+                        <h3>Education</h3>
+                        <p><strong>Integrated PhD</strong> in Physics, National Centre for Radio Astrophysics, Pune (2020-Present)<br>
+                        <strong>Bachelor of Science</strong> in Physics Honours, Burdwan Raj College (2017-2020) - University Topper</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- ABOUT ME -->
         <section id="about" class="section">
-            <div class="content-section">
+            <div class="about-content">
                 <h2>About Me</h2>
                 <div class="profile-section">
                     <div class="profile-image">
@@ -594,8 +616,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- OUTSIDE OF ACADEMIA -->
         <section id="outside" class="section">
             <div class="content-section">
                 <h2>Outside of Academia</h2>
